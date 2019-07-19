@@ -1,7 +1,7 @@
 import functools
 import types
 
-from django.core.checks import Error, Warning
+from django.core.checks import Error, Warning  # noqa: E501 pylint: disable=redefined-builtin
 
 
 def api_view_serializer_class_getter(serializer_class_getter):

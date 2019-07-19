@@ -7,7 +7,7 @@ from rest_registration.settings import registration_settings
 from rest_registration.utils.responses import get_ok_response
 
 
-class ChangePasswordSerializer(serializers.Serializer):
+class ChangePasswordSerializer(serializers.Serializer):  # noqa: E501 pylint: disable=abstract-method
     old_password = serializers.CharField()
     password = serializers.CharField()
 

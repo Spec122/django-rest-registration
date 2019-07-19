@@ -12,11 +12,11 @@ from rest_registration.utils.users import (
 )
 
 
-class MetaObj(object):
+class MetaObj:
     pass
 
 
-class DefaultLoginSerializer(serializers.Serializer):
+class DefaultLoginSerializer(serializers.Serializer):  # noqa: E501 pylint: disable=abstract-method
     """
     Default serializer used for user login. It will use
     :ref:`user-login-fields-setting` setting to compare the login
@@ -35,7 +35,7 @@ class DefaultLoginSerializer(serializers.Serializer):
             data['login'], data['password'])
 
 
-class DefaultRegisterEmailSerializer(serializers.Serializer):
+class DefaultRegisterEmailSerializer(serializers.Serializer):  # noqa: E501 pylint: disable=abstract-method
     """
     Default serializer used for e-mail registration (e-mail change).
     """
@@ -48,7 +48,7 @@ class DefaultRegisterEmailSerializer(serializers.Serializer):
         return self.validated_data['email']
 
 
-class DefaultSendResetPasswordLinkSerializer(serializers.Serializer):
+class DefaultSendResetPasswordLinkSerializer(serializers.Serializer):  # noqa: E501 pylint: disable=abstract-method
     """
     Default serializer used for sending reset password link.
 
@@ -110,10 +110,11 @@ class DefaultUserProfileSerializer(serializers.ModelSerializer):
         read_only_field_names = _get_field_names(
             allow_primary_key=True,
             non_editable=True)
-        self.Meta = MetaObj()
-        self.Meta.model = user_class
-        self.Meta.fields = field_names
-        self.Meta.read_only_fields = read_only_field_names
+        meta_obj = MetaObj()
+        meta_obj.model = user_class
+        meta_obj.fields = field_names
+        meta_obj.read_only_fields = read_only_field_names
+        self.Meta = meta_obj
         super().__init__(*args, **kwargs)
 
 

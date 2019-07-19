@@ -10,7 +10,7 @@ source "${SCRIPT_DIR}/utils.sh"
 
 main() {
     cd "${BASE_DIR}"
-    pylint --rcfile=setup.cfg "${MODULE_NAME}" "${TEST_MODULE_NAME}" -E "$@"
+    pylint --rcfile=setup.cfg "${MODULE_NAME}" "${TEST_MODULE_NAME}" "$@"
 }
 
 main "$@"

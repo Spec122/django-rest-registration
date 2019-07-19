@@ -77,7 +77,7 @@ def send_reset_password_link(request):
     return get_ok_response('Reset link sent')
 
 
-class ResetPasswordSerializer(serializers.Serializer):
+class ResetPasswordSerializer(serializers.Serializer):  # noqa: E501 pylint: disable=abstract-method
     user_id = serializers.CharField(required=True)
     timestamp = serializers.IntegerField(required=True)
     signature = serializers.CharField(required=True)

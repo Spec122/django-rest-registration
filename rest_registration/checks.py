@@ -8,7 +8,7 @@ from rest_registration.notifications.email import parse_template_config
 from rest_registration.settings import registration_settings
 
 
-class ErrorCode(object):
+class ErrorCode:  # pylint: disable=too-few-public-methods
     NO_RESET_PASSWORD_VER_URL = 'E001'
     NO_REGISTER_VER_URL = 'E002'
     NO_REGISTER_EMAIL_VER_URL = 'E003'
@@ -19,7 +19,7 @@ class ErrorCode(object):
     NO_AUTH_INSTALLED = 'E008'
 
 
-class WarningCode(object):
+class WarningCode:  # pylint: disable=too-few-public-methods
     REGISTER_VERIFICATION_MULTIPLE_AUTO_LOGIN = 'W001'
 
 
