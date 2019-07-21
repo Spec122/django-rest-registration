@@ -28,6 +28,7 @@ USER_SETTINGS_FIELDS = [
             'is_active',
             'is_staff',
             'is_superuser',
+            'is_moderator',
             'user_permissions',
             'groups',
             'date_joined',
