@@ -1,4 +1,5 @@
 from django.urls import path
+from django.views.decorators.csrf import csrf_exempt
 
 from .views import (
     change_password,
@@ -15,7 +16,7 @@ from .views import (
 
 app_name = 'rest_registration'
 urlpatterns = [
-    path('register/', register, name='register'),
+    path('register/', csrf_exempt(register), name='register'),
     path('verify-registration/', verify_registration,
         name='verify-registration'),
 
@@ -23,13 +24,13 @@ urlpatterns = [
         name='send-reset-password-link'),
     path('reset-password/', reset_password, name='reset-password'),
 
-    path('login/', login, name='login'),
+    path('login/', csrf_exempt(login), name='login'),
     path('logout/', logout, name='logout'),
 
     path('profile/', profile, name='profile'),
 
     path('change-password/', change_password, name='change-password'),
 
-    path('register-email/', register_email, name='register-email'),
+    path('register-email/', csrf_exempt(register_email), name='register-email'),
     path('verify-email/', verify_email, name='verify-email'),
 ]
