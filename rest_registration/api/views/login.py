@@ -10,6 +10,8 @@ from rest_framework.authtoken.models import Token
 from rest_framework.decorators import api_view, permission_classes
 from rest_framework.permissions import AllowAny, IsAuthenticated
 from rest_framework.settings import api_settings
+from rest_framework.authtoken.models import Token
+
 
 from rest_registration.decorators import (
     api_view_serializer_class,
@@ -19,12 +21,11 @@ from rest_registration.exceptions import BadRequest
 from rest_registration.settings import registration_settings
 from rest_registration.utils.responses import get_ok_response
 
-
+@csrf_exempt
 @api_view_serializer_class_getter(
     lambda: registration_settings.LOGIN_SERIALIZER_CLASS)
 @api_view(['POST'])
 @permission_classes([AllowAny])
-@csrf_exempt
 def login(request):
     '''
     Logs in the user via given login and password.
@@ -41,8 +42,8 @@ def login(request):
         raise BadRequest('Login or password invalid.')
 
     extra_data = perform_login(request, user)
-
-    return get_ok_response('Login successful', extra_data=extra_data)
+    token = Token.objects.create(user=user)
+    return get_ok_response(token, extra_data=extra_data)
 
 
 class LogoutSerializer(serializers.Serializer):
