@@ -7,7 +7,6 @@ from rest_registration.decorators import api_view_serializer_class
 from rest_registration.settings import registration_settings
 from rest_registration.utils.responses import get_ok_response
 
-@csrf_exempt
 class ChangePasswordSerializer(serializers.Serializer):
     old_password = serializers.CharField()
     password = serializers.CharField()

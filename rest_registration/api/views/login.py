@@ -21,7 +21,7 @@ from rest_registration.exceptions import BadRequest
 from rest_registration.settings import registration_settings
 from rest_registration.utils.responses import get_ok_response
 
-@csrf_exempt
+
 @api_view_serializer_class_getter(
     lambda: registration_settings.LOGIN_SERIALIZER_CLASS)
 @api_view(['POST'])

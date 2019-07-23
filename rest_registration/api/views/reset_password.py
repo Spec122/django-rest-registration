@@ -21,7 +21,6 @@ from rest_registration.utils.users import (
 from rest_registration.utils.verification import verify_signer_or_bad_request
 from rest_registration.verification import URLParamsSigner
 
-@csrf_exempt
 class ResetPasswordSigner(URLParamsSigner):
     SALT_BASE = 'reset-password'
     USE_TIMESTAMP = True
