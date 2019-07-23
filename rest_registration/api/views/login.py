@@ -1,9 +1,11 @@
 from django.contrib import auth
+from django.views.decorators.csrf import csrf_exempt
 from rest_framework import serializers
 from rest_framework.authentication import (
     SessionAuthentication,
     TokenAuthentication
 )
+
 from rest_framework.authtoken.models import Token
 from rest_framework.decorators import api_view, permission_classes
 from rest_framework.permissions import AllowAny, IsAuthenticated
@@ -22,6 +24,7 @@ from rest_registration.utils.responses import get_ok_response
     lambda: registration_settings.LOGIN_SERIALIZER_CLASS)
 @api_view(['POST'])
 @permission_classes([AllowAny])
+@csrf_exempt
 def login(request):
     '''
     Logs in the user via given login and password.

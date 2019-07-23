@@ -1,4 +1,5 @@
 from django.contrib.auth.password_validation import validate_password
+from django.views.decorators.csrf import csrf_exempt
 from django.core.exceptions import ValidationError
 from django.http import Http404
 from rest_framework import serializers
@@ -20,7 +21,7 @@ from rest_registration.utils.users import (
 from rest_registration.utils.verification import verify_signer_or_bad_request
 from rest_registration.verification import URLParamsSigner
 
-
+@csrf_exempt
 class ResetPasswordSigner(URLParamsSigner):
     SALT_BASE = 'reset-password'
     USE_TIMESTAMP = True

@@ -1,4 +1,5 @@
 from django.contrib.auth.password_validation import validate_password
+from django.views.decorators.csrf import csrf_exempt
 from rest_framework import permissions, serializers
 from rest_framework.decorators import api_view, permission_classes
 
@@ -6,7 +7,7 @@ from rest_registration.decorators import api_view_serializer_class
 from rest_registration.settings import registration_settings
 from rest_registration.utils.responses import get_ok_response
 
-
+@csrf_exempt
 class ChangePasswordSerializer(serializers.Serializer):
     old_password = serializers.CharField()
     password = serializers.CharField()
